@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>ReviewAnalyzer</RootNamespace>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<LangVersion>11.0</LangVersion>
+		<NoWarn>CS8600;CS8602;CS8603;CS8604;CS8618;CS8625;NU1603</NoWarn>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AngleSharp" Version="0.17.1" />
+		<PackageReference Include="LLamaSharp" Version="0.11.0" />
+		<!-- Используем CPU-бэкенд, возможно отключение -->
+		<PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.11.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Selenium.Support" Version="4.33.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.33.0" />
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="137.0.7151.6800" />
+		<PackageReference Include="System.Text.Json" Version="8.0.6" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Models\deepseek-llm-7b-chat.Q4_K_M.gguf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<Content Include="$(PkgLLamaSharp_Backend_Cpu)\runtimes\win-x64\native\*.dll" LinkBase="runtimes\win-x64\native">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="chromedriver\" />
+	</ItemGroup>
+
+</Project>
